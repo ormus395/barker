@@ -11,6 +11,7 @@ router.get("/:blogId", (req, res) => {
 });
 
 router.post("/createBlog", (req, res) => {
+  console.log(req.body);
   return res.send("Create a story");
 });
 

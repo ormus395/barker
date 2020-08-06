@@ -3,6 +3,10 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import express from "express";
 
+import database from "./models";
+import User from "./models/user";
+import Post from "./models/post";
+
 import routes from "./routes";
 
 const app = express();
@@ -23,6 +27,12 @@ app.use((req, res, next) => {
 
 // error handling
 
-app.listen(process.env.PORT, () => {
-  console.log("server started on port: " + process.env.PORT);
+//create database associations
+Post.belongsTo(User, { onDelete: "CASCADE" });
+User.hasMany(Post);
+
+database.sync().then(() => {
+  app.listen(process.env.PORT, () => {
+    console.log("server started on port: " + process.env.PORT);
+  });
 });
