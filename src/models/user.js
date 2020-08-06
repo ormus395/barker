@@ -1,16 +1,18 @@
-import { Sequelize, DataTypes } from "sequelize";
-import database from "./index";
+import mongoose from "mongoose";
+const Schema = mongoose.Schema;
 
-const User = database.define("User", {
+const userSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
   email: {
-    type: DataTypes.STRING,
+    type: String,
+    required: true,
     unique: true,
-    allowNull: false,
   },
   password: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: String,
+    required: true,
   },
 });
-
-export default User;
