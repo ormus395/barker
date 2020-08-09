@@ -15,4 +15,9 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  posts: [{ type: Schema.Types.ObjectId, ref: "Blog" }],
 });
+
+const User = mongoose.model("User", userSchema);
+
+export default User;

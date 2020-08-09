@@ -14,7 +14,6 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // routes
-app.use("/session", routes.session);
 app.use("/user", routes.user);
 app.use("/blog", routes.blog);
 
