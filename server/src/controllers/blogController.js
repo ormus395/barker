@@ -1,21 +1,42 @@
+import marked from "marked";
+
 import Blog from "../models/blog";
 import User from "../models/user";
 
 const getHomeFeed = (req, res) => {
-  return res.send("Get blog home feed");
+  console.log("Blog feed called");
+  Blog.find().then((blogs) => {
+    if (!blogs) {
+      let error = new Error("Unable to fetch blogs");
+      error.statusCode = 404;
+      throw error;
+    }
+
+    res.status(200).json({
+      message: "Blogs fetched successfully",
+      blogs: blogs,
+    });
+  });
 };
 
 const getBlog = (req, res) => {
   // get blog by id
-  let _id = req.params.blogId;
+  let slug = req.params.slug;
 
-  Blog.findById(_id).then((blog) => {
+  Blog.findOne({
+    slug: slug,
+  }).then((blog) => {
     // if no blog, create and throw 404 error
     if (!blog) {
       let error = new Error("That blog does not exist");
       error.statusCode = 404;
       throw error;
     }
+
+    res.status(200).json({
+      message: "Fetched blog successfully.",
+      blog: blog,
+    });
   });
 };
 
@@ -27,7 +48,7 @@ const postBlog = (req, res) => {
   const blog = new Blog({
     title: title,
     markdown: markdown,
-    // author: req.userId,
+    author: req.userId,
   });
 
   blog
@@ -37,8 +58,8 @@ const postBlog = (req, res) => {
         message: "Blog created successfully",
         blog: result,
       });
-    })
-    /*.then((user) => {
+    }) /*
+    .then((user) => {
       author = user;
       user.posts.push(blog);
       return user.save();
@@ -56,11 +77,36 @@ const postBlog = (req, res) => {
 };
 
 const updateBlog = (req, res, next) => {
-  res.send("update blog with id: " + req.params.blogId);
+  // get blog by id
+  const _id = req.params.blogId;
+
+  let title = req.body.title;
+  let markdown = req.body.markdown;
+
+  Blog.findById(_id)
+    .then((blog) => {
+      blog.title = title;
+      blog.markdown = markdown;
+
+      return blog.save();
+    })
+    .then((blog) => {
+      res.status(200).json({
+        message: "Blog updated sucessfully.",
+        blog: blog,
+      });
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+
+      next(err);
+    });
 };
 
 const deleteBlog = (req, res) => {
   res.send("delete the blog with id: " + req.params.blogId);
 };
 
-export { postBlog, getHomeFeed, getBlog, deleteBlog };
+export { postBlog, getHomeFeed, getBlog, deleteBlog, updateBlog };

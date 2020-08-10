@@ -1,4 +1,10 @@
 # code-blog-api
 
+finished
+wired up blog schema
+blog post route
+blog pre save is parsing markdown then sanitizing the html
+
 Todos:
-finish blog schema
+finish blog schema (tie in users)
+

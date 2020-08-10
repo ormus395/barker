@@ -5,17 +5,18 @@ import {
   getHomeFeed,
   getBlog,
   deleteBlog,
+  updateBlog,
 } from "../controllers/blogController";
 const router = Router();
 
-router.get("/", getHomeFeed);
+router.get("/blog", getHomeFeed);
 
-router.get("/:blogId", getBlog);
+router.get("/blog/:slug", getBlog);
 
-router.post("/post", postBlog);
+router.post("/blog/create", postBlog);
 
-router.put("/:blogId");
+router.put("/blog/edit/:blogId", updateBlog);
 
-router.delete("/:blogId", deleteBlog);
+router.delete("/blog/delete/:blogId", deleteBlog);
 
 export default router;

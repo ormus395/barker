@@ -1,3 +1,5 @@
+import path from "path";
+
 import "dotenv/config";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -7,6 +9,7 @@ import mongoose from "mongoose";
 import routes from "./routes";
 
 const app = express();
+let env = process.env.NODE_ENV || "development";
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -14,23 +17,24 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // routes
-app.use("/user", routes.user);
-app.use("/blog", routes.blog);
+app.use("/api", routes.user);
+app.use("/api", routes.blog);
 
 // 404 response
 app.get("/not-found", (req, res, next) => {
   res.status(404).json({ message: "The resource does not exist" });
 });
 
+if (env !== "development") {
+  app.use(express.static(path.join(__dirname, "../", "../", "client")));
+  app.get("/", (req, res, next) => {
+    res.sendFile(
+      path.join(__dirname, "../", "../", "client", "public", "index.html")
+    );
+  });
+}
+
 // error handling
-app.get("*", (req, res, next) => {
-  const error = new Error(`${req.ip} tried to access ${req.originalUrl}`);
-
-  error.statusCode = 301;
-
-  next(error);
-});
-
 app.use((error, req, res, next) => {
   if (!error.statusCode) error.statusCode = 500;
 

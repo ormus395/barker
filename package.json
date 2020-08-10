@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec babel-node src/index.js"
+    "build": "babel server/src --out-dir server/lib",
+    "dev": "nodemon --ignore client --exec babel-node server/src/index.js"
   },
   "keywords": [
     "node",
@@ -15,6 +16,7 @@
   "author": "Jarec Turner",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.1",
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.0",
@@ -30,6 +32,13 @@
     "express-validator": "^6.6.1",
     "jsdom": "^16.4.0",
     "marked": "^1.1.1",
-    "mongoose": "^5.9.27"
+    "mongoose": "^5.9.27",
+    "slugify": "^1.4.5"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "client/"
+    ],
+    "delay": "2500"
   }
 }
