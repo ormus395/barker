@@ -1,9 +1,9 @@
 import session from "./session";
-import user from "./user";
+import auth from "./auth";
 import blog from "./blog";
 
 export default {
   session,
-  user,
+  auth,
   blog,
 };

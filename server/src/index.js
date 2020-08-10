@@ -17,13 +17,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // routes
-app.use("/api", routes.user);
+app.use("/api", routes.auth);
 app.use("/api", routes.blog);
-
-// 404 response
-app.get("/not-found", (req, res, next) => {
-  res.status(404).json({ message: "The resource does not exist" });
-});
 
 if (env !== "development") {
   app.use(express.static(path.join(__dirname, "../", "../", "client")));
@@ -38,11 +33,7 @@ if (env !== "development") {
 app.use((error, req, res, next) => {
   if (!error.statusCode) error.statusCode = 500;
 
-  if (error.statusCode === 301) {
-    return res.status(301).redirect("/not-found");
-  }
-
-  return res.status(error.statusCode).json({ error: error.toString() });
+  return res.status(error.statusCode).json({ error: error });
 });
 
 // connect to db and start server
