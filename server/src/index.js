@@ -1,8 +1,10 @@
 import path from "path";
 
 import "dotenv/config";
-import cors from "cors";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import session from "express-session";
+import csurf from "csurf";
 import express from "express";
 import mongoose from "mongoose";
 
@@ -11,10 +13,13 @@ import routes from "./routes";
 const app = express();
 let env = process.env.NODE_ENV || "development";
 
+// if (env === "development") {
+//   import cors from "cors";
+//   app.use(cors());
+// }
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-app.use(cors());
 
 // routes
 app.use("/api", routes.auth);
