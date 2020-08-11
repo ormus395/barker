@@ -6,4 +6,4 @@ blog post route
 blog pre save is parsing markdown then sanitizing the html
 
 Todos:
-finish blog schema (tie in users)
+work on blog route validation
