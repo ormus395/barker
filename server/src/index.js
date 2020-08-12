@@ -13,7 +13,8 @@ import routes from "./routes";
 const app = express();
 let env = process.env.NODE_ENV || "development";
 let secure = process.env.NODE_ENV ? true : false;
-
+let port = process.env.PORT || 8080;
+const csrfProtection = csurf();
 // if (env === "development") {
 //   import cors from "cors";
 //   app.use(cors());
@@ -21,6 +22,7 @@ let secure = process.env.NODE_ENV ? true : false;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 const store = new mongoStore({
   uri: process.env.DATABASE,
   collection: "sessions",
@@ -39,11 +41,15 @@ app.use(
     store: store,
   })
 );
+app.use(csrfProtection);
+
 // routes
 app.use("/api", routes.auth);
 app.use("/api", routes.blog);
 app.use("/admin", routes.admin);
-
+app.use("/", (req, res, next) => {
+  res.send(req.csrfToken());
+});
 if (env !== "development") {
   app.use(express.static(path.join(__dirname, "../", "../", "client")));
   app.get("/", (req, res, next) => {
@@ -73,8 +79,8 @@ app.use((error, req, res, next) => {
 mongoose
   .connect(process.env.DATABASE, { useNewUrlParser: true })
   .then((result) => {
-    app.listen(process.env.PORT, () => {
-      console.log("server started on port: " + process.env.PORT);
+    app.listen(port, () => {
+      console.log("server started on port: " + port);
     });
   })
   .catch((err) => console.log(err));

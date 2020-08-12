@@ -6,7 +6,8 @@
 - [x] blog post route
 - [x] blog pre save is parsing markdown then sanitizing the html
 - [x] blog route validation
-- [] session and cookie middleware for admin user
+- [x] session and cookie middleware for admin user
+- [] implement csrf protection
 - [] create admin user
 - [] figure out a way to maintain one user resource
 - [] authenticate all resource endpoints

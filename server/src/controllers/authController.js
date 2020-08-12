@@ -44,8 +44,41 @@ export const signup = (req, res, next) => {
 };
 
 export const login = (req, res, next) => {
-  req.session.isLoggedIn = true;
-  res.json({ message: "Logged in successfully" });
+  console.log(req.body);
+  const email = req.body.email;
+  const password = req.body.password;
+
+  User.findOne({ email: email }).then((user) => {
+    // if no user, 401, user wasnt found with that email
+    if (!user) {
+      let error = new Error("Unable to login. Incorrect login credentials.");
+      error.statusCode = 401;
+      throw error;
+    }
+
+    // user was found, check password
+    bcrypt
+      .compare(password, user.password)
+      .then((isMatch) => {
+        if (!isMatch) {
+          let error = new Error(
+            "Unable to login. Incorrect login credentials."
+          );
+          error.statusCode = 401;
+          throw error;
+        }
+
+        req.session.isLoggedIn = true;
+        req.session.user = {
+          _id: user._id,
+        };
+
+        res.status(200).json({ message: "Logged in successfully" });
+      })
+      .catch((error) => {
+        throw error;
+      });
+  });
 };
 
 export const logout = (req, res, next) => {
