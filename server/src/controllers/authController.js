@@ -43,4 +43,16 @@ export const signup = (req, res, next) => {
     });
 };
 
-export const login = (req, res, next) => {};
+export const login = (req, res, next) => {
+  req.session.isLoggedIn = true;
+  res.json({ message: "Logged in successfully" });
+};
+
+export const logout = (req, res, next) => {
+  req.session.destroy((error) => {
+    if (error) {
+      next(error);
+    }
+    res.json({ message: "logged out successfully" });
+  });
+};
