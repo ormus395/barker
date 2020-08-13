@@ -47,7 +47,8 @@ app.use(csrfProtection);
 app.use("/api", routes.auth);
 app.use("/api", routes.blog);
 app.use("/admin", routes.admin);
-app.use("/", (req, res, next) => {
+app.get("/", (req, res, next) => {
+  console.log(req.csrfToken());
   res.send(req.csrfToken());
 });
 if (env !== "development") {

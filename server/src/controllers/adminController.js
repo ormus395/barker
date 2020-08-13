@@ -2,36 +2,31 @@ import Blog from "../models/blog";
 import User from "../models/user";
 
 const postBlog = (req, res) => {
-  const title = req.body.title;
-  const markdown = req.body.markdown;
-  let author;
+  let userId = req.session.user._id;
+  let blog;
 
-  const blog = new Blog({
-    title: title,
-    markdown: markdown,
-    author: req.userId,
+  const { title, markdown } = req.body;
+  const newBlog = new Blog({
+    title,
+    markdown,
+    author: userId,
   });
-
-  blog
+  newBlog
     .save()
-    .then((result) => {
+    .then((createdBlog) => {
+      blog = createdBlog;
+      return User.findById(userId);
+    })
+    .then((user) => {
+      user.blogs.push(blog);
+      return user.save();
+    })
+    .then((user) => {
       res.status(201).json({
-        message: "Blog created successfully",
-        blog: result,
+        message: "Blog post created successfully",
+        blog: blog,
       });
-    }) /*
-     .then((user) => {
-       author = user;
-       user.posts.push(blog);
-       return user.save();
-     })
-     .then((user) => {
-       res.status(201).json({
-         message: "Post created successfully",
-         blog: blog,
-         author: { _id: author._id, name: author.name },
-       });
-     })*/
+    })
     .catch((err) => {
       throw new Error(err);
     });
