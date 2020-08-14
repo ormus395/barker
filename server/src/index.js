@@ -73,7 +73,9 @@ app.use((error, req, res, next) => {
       "Server error. Our team has been notified and will be working to fix the situation.";
   }
 
-  return res.status(error.statusCode).json({ message: error.message });
+  return res.status(error.statusCode).json({
+    errors: [error],
+  });
 });
 
 // connect to db and start server

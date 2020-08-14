@@ -10,6 +10,9 @@ import {
 
 const router = Router();
 
+router.get("/admin/dashboard");
+router.get("/admin/blogs");
+
 router.post(
   "/blog/create",
   isAuth,

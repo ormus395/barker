@@ -1,7 +1,17 @@
+import { validationResult } from "express-validator";
+
 import Blog from "../models/blog";
 import User from "../models/user";
 
 const postBlog = (req, res) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      errors: errors.array(),
+    });
+  }
+
   let userId = req.session.user._id;
   let blog;
 
@@ -33,6 +43,13 @@ const postBlog = (req, res) => {
 };
 
 const updateBlog = (req, res, next) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      errors: errors.array(),
+    });
+  }
   // get blog by id
   const _id = req.params.blogId;
 
