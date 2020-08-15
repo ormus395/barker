@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      "https://raw.githubusercontent.com/ormus395/code-blog/master/README.md"
+      "https://raw.githubusercontent.com/ormus395/code-blog/master/blog/java-battleship-cli/index.md"
     )
       .then((response) => response.text())
       .then((textResponse) => {
