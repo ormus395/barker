@@ -26,3 +26,5 @@
 ### client
 
 - [] start basic client build
+
+possible color pallete: https://coolors.co/16697a-489fb5-82c0cc-ede7e3-ffa62b
