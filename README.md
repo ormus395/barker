@@ -25,6 +25,22 @@
 
 ### client
 
-- [] start basic client build
+- [x] start basic client build
 
-possible color pallete: https://coolors.co/16697a-489fb5-82c0cc-ede7e3-ffa62b
+- [] **Routing:**
+  - [x] get routing working
+  - [] work on nested routing for the blogs
+- [] **Finish the pages**
+  - [] Landing
+  - [] About
+  - [] Hire
+  - [] Portfolio
+  - [] Blog home feed
+
+possible color palette
+
+- #17252a
+- #2b7a78
+- #3aafa9
+- #def2f1
+- #feffff
