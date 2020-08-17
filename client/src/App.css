@@ -1,14 +1,3 @@
-body {
-  margin: 0;
-  padding: 0;
-}
-
-h1 {
-  color: blueviolet;
-  text-align: center;
-}
-
-#markdown-container {
-  margin: 0 auto;
-  width: 88%;
+.attention {
+  color: #3aafa9;
 }

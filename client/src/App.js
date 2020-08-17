@@ -1,39 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import "./App.css";
 
-import marked from "marked";
-import DOMPurify from "dompurify";
+// nav component
+import Header from "./components/Header";
+import Nav from "./components/Nav";
 
-function createMarkup(text) {
-  return DOMPurify.sanitize(marked(text));
-}
+// import pages
+import { About, BlogHome, Hire, Landing, Portfolio } from "./pages";
 
 function App() {
-  const [markdown, setMarkdown] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    fetch(
-      "https://raw.githubusercontent.com/ormus395/code-blog/master/blog/java-battleship-cli/index.md"
-    )
-      .then((response) => response.text())
-      .then((textResponse) => {
-        setMarkdown(createMarkup(textResponse));
-        setIsLoading(false);
-      });
-  }, []);
   return (
-    <main id="main">
-      {isLoading ? (
-        <p>Loading content...</p>
-      ) : (
-        <div
-          id="markdown-container"
-          dangerouslySetInnerHTML={{ __html: markdown }}
-        ></div>
-      )}
-    </main>
+    <Router>
+      <div>
+        <Header>
+          <Nav />
+        </Header>
+
+        <main className="main container">
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/blog">
+              <BlogHome />
+            </Route>
+            <Route path="/hire">
+              <Hire />
+            </Route>
+            <Route path="/portfolio">
+              <Portfolio />
+            </Route>
+            <Route path="/">
+              <Landing />
+            </Route>
+          </Switch>
+        </main>
+      </div>
+    </Router>
   );
 }
 
