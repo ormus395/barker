@@ -1,5 +1,6 @@
 .nav {
   justify-content: space-between;
+  padding: 2rem 0;
 }
 
 .nav__item + .nav__item {
