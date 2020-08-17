@@ -1,7 +1,7 @@
 .hero {
-  height: 50%;
+  height: 70%;
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
 }
 
 .hero__img {
@@ -16,8 +16,10 @@
 
 .hero__text {
   background-color: white;
+  /* color: white; */
   position: absolute;
-  top: 45%;
+  left: 5%;
+  top: 40%;
   width: 300px;
 }
 
@@ -33,18 +35,25 @@
 
 /* about */
 .about {
-  height: 50%;
-  justify-content: space-between;
+  /* height: 50%; */
+  /* justify-content: space-between; */
+  margin-bottom: 2rem;
 }
+
 .about__img {
   background-image: url(./about-img.JPG);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  width: 45%;
+  /* height: 300px; */
+  width: 30%;
 }
 
 .about__text {
+  border-bottom: 2px solid #def2f1;
+  border-top: 2px solid #def2f1;
+  margin-left: 10rem;
+  padding: 2rem 0;
   width: 30%;
 }
 
