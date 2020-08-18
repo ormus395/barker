@@ -16,10 +16,14 @@ const postBlog = (req, res) => {
   let blog;
 
   const { title, markdown } = req.body;
+  const image = req.file;
+  const imageUrl = "/" + image.path;
+
   const newBlog = new Blog({
     title,
     markdown,
     author: userId,
+    imageUrl: imageUrl,
   });
   newBlog
     .save()

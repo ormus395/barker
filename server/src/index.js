@@ -1,8 +1,9 @@
-import path from "path";
+import path, { join } from "path";
 
 import "dotenv/config";
 import bodyParser from "body-parser";
 import session from "express-session";
+import multer from "multer";
 const mongoStore = require("connect-mongodb-session")(session);
 import csurf from "csurf";
 import express from "express";
@@ -23,6 +24,32 @@ const csrfProtection = csurf();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const fileStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "images");
+  },
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      new Date().toISOString().replace(/:/g, "-") + "-" + file.originalname
+    );
+  },
+});
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === "image/png" ||
+    file.mimetype === "image/jpg" ||
+    file.mimetype === "image/jpeg"
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+app.use(multer({ storage: fileStorage }).single("image"));
+let imagePath = path.join(__dirname, "../", "../", "images");
+app.use("/images", express.static(imagePath));
+
 const store = new mongoStore({
   uri: process.env.DATABASE,
   collection: "sessions",
@@ -41,7 +68,7 @@ app.use(
     store: store,
   })
 );
-app.use(csrfProtection);
+// app.use(csrfProtection);
 
 // routes
 app.use("/api", routes.auth);

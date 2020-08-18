@@ -35,6 +35,9 @@ const blogSchema = new Schema({
     type: Number,
     default: 0,
   },
+  imageUrl: {
+    type: String,
+  },
   date: { type: Date, default: Date.now },
 });
 

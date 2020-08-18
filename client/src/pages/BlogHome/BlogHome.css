@@ -5,16 +5,32 @@
 }
 
 /* article */
+.articles {
+  margin: 0 auto;
+  width: 80%;
+}
 
 .article {
   border-bottom: 2px solid var(--main-color);
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  padding-top: 2rem;
   width: 40%;
+}
+
+.article__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .article__title {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+}
+
+.article__img {
+  margin-right: 2rem;
+  width: 30%;
 }
 
 .author {

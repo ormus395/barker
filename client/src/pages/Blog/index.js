@@ -20,6 +20,7 @@ function Blog() {
         console.log(err);
       });
   }, []);
+
   return (
     <div className="article-container">
       <div dangerouslySetInnerHTML={{ __html: blog.processedHtml }}></div>

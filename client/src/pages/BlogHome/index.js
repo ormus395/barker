@@ -29,34 +29,36 @@ const BlogHome = () => {
     let date = new Date(article.date);
 
     return (
-      <Link
-        className="article row"
-        key={article._id}
-        to={`${match.url}/${article.slug}`}
-      >
-        <article>
-          <div className="article__img">
-            <img src="" alt="" />
-          </div>
-          <div className="article__text">
-            <h3 className="article__title">{article.title}</h3>
-            <div className="article__info">
-              <p className="author">{article.author.name}</p>
-              <p className="article__created">
-                {date.toLocaleDateString("en-US")}
-              </p>
+      <article className="article">
+        <Link
+          className=""
+          key={article._id}
+          to={`${match.url}/${article.slug}`}
+        >
+          <div className="row">
+            <div className="article__img">
+              <img src={article.imageUrl || null} alt="" />
+            </div>
+            <div className="article__text">
+              <h3 className="article__title">{article.title}</h3>
+              <div className="article__info">
+                <p className="author">{article.author.name}</p>
+                <p className="article__created">
+                  {date.toLocaleDateString("en-US")}
+                </p>
+              </div>
             </div>
           </div>
-        </article>
-      </Link>
+        </Link>
+      </article>
     );
   });
 
   return (
-    <main className="container">
+    <div className="articles">
       <h3 className="blog-page-title">Recent Articles</h3>
       <section className="articles">{articles}</section>
-    </main>
+    </div>
   );
 };
 
