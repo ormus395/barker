@@ -39,11 +39,12 @@
 /* about */
 .about {
   /* height: 50%; */
-  justify-content: space-around;
+  /* justify-content: space-around; */
   margin-bottom: 2rem;
 }
 
 .about__img {
+  margin-left: 2rem;
   width: 30%;
 }
 

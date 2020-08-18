@@ -11,10 +11,14 @@
 }
 
 .article {
-  border-bottom: 2px solid var(--main-color);
-  padding-bottom: 0.5rem;
-  padding-top: 2rem;
-  width: 40%;
+  background-color: white;
+  padding: 1.5rem 1rem;
+  margin-bottom: 1rem;
+  max-width: 760px;
+}
+
+.article:hover {
+  border-right: 2px solid var(--main-color);
 }
 
 .article__text {
@@ -30,7 +34,7 @@
 
 .article__img {
   margin-right: 2rem;
-  width: 30%;
+  width: 20%;
 }
 
 .author {

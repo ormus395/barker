@@ -39,7 +39,7 @@ const Landing = () => (
       <div className="about__img">
         <img src={aboutImg} alt="" />
       </div>
-      <div className="about__skills">
+      {/* <div className="about__skills">
         <h3 className="skills__title">Skills</h3>
         <ul className="row skills__items">
           <li className="skills__item">
@@ -61,7 +61,7 @@ const Landing = () => (
             <FontAwesomeIcon className="skill__icon" icon={["fab", "css3"]} />
           </li>
         </ul>
-      </div>
+      </div> */}
     </section>
   </div>
 );

@@ -29,12 +29,8 @@ const BlogHome = () => {
     let date = new Date(article.date);
 
     return (
-      <article className="article">
-        <Link
-          className=""
-          key={article._id}
-          to={`${match.url}/${article.slug}`}
-        >
+      <article key={article._id} className="article">
+        <Link className="" to={`${match.url}/${article.slug}`}>
           <div className="row">
             <div className="article__img">
               <img src={article.imageUrl || null} alt="" />
@@ -57,7 +53,7 @@ const BlogHome = () => {
   return (
     <div className="articles">
       <h3 className="blog-page-title">Recent Articles</h3>
-      <section className="articles">{articles}</section>
+      <section>{articles}</section>
     </div>
   );
 };

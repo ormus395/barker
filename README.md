@@ -29,13 +29,17 @@
 
 - [] **Routing:**
   - [x] get routing working
-  - [] work on nested routing for the blogs
+  - [x] work on nested routing for the blogs
 - [] **Finish the pages**
-  - [] Landing
-  - [] About
+  - [x] Landing
   - [] Hire
   - [] Portfolio
-  - [] Blog home feed
+  - [x] Blog home feed
+- [] **Need to find a good react markdown editor**
+
+  - https://uiwjs.github.io/react-md-editor/
+  - https://andrerpena.me/react-mde/
+  - https://simplemde.com/
 
 possible color palette
 
