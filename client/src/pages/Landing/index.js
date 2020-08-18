@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./Landing.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import "./Landing.css";
+import aboutImg from "./about-img.JPG";
 const Landing = () => (
-  <main className="container">
+  <div className="container hero-container">
     <div className="hero">
       <div className="hero__img">
         <div className="hero__text">
@@ -19,7 +21,6 @@ const Landing = () => (
       </div>
     </div>
     <section className="about row">
-      <div className="about__img"></div>
       <div className="about__text">
         <h3 className="about__title">About Me</h3>
         <p>
@@ -35,8 +36,34 @@ const Landing = () => (
           <Link to="hire">please click here</Link>
         </p>
       </div>
+      <div className="about__img">
+        <img src={aboutImg} alt="" />
+      </div>
+      <div className="about__skills">
+        <h3 className="skills__title">Skills</h3>
+        <ul className="row skills__items">
+          <li className="skills__item">
+            <FontAwesomeIcon className="skill__icon" icon={["fab", "react"]} />
+          </li>
+          <li className="skills__item">
+            <FontAwesomeIcon
+              className="skill__icon"
+              icon={["fab", "node-js"]}
+            />
+          </li>
+          <li className="skills__item">
+            <FontAwesomeIcon className="skill__icon" icon={["fab", "js"]} />
+          </li>
+          <li className="skills__item">
+            <FontAwesomeIcon className="skill__icon" icon={["fab", "html5"]} />
+          </li>
+          <li className="skills__item">
+            <FontAwesomeIcon className="skill__icon" icon={["fab", "css3"]} />
+          </li>
+        </ul>
+      </div>
     </section>
-  </main>
+  </div>
 );
 
 export default Landing;

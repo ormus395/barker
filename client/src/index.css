@@ -1,16 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
 :root {
   --main-color: #17252a;
   --second-color: #2b7a78;
   --third-color: #3aafa9;
   --fourth-color: #def2f1;
-  --fith-color: #feffff;
+  --fifth-color: #feffff;
 }
 
 html {
   background-color: #fdfffc;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Mono", monospace;
   font-size: 16px;
   height: 100%;
 }
@@ -20,6 +20,7 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  position: relative;
 }
 
 #root {
@@ -42,6 +43,10 @@ a:hover {
 a:visited {
   color: #3aafa9;
   text-decoration-color: darkgray;
+}
+
+img {
+  width: 100%;
 }
 
 /* General Css classes */

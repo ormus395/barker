@@ -8,7 +8,7 @@ import Header from "./components/Header";
 import Nav from "./components/Nav";
 
 // import pages
-import { About, BlogHome, Hire, Landing, Portfolio } from "./pages";
+import { BlogHome, Hire, Landing, Portfolio, Blog } from "./pages";
 
 function App() {
   return (
@@ -16,20 +16,25 @@ function App() {
       <Header>
         <Nav />
       </Header>
-      <Switch>
-        <Route path="/blog">
-          <BlogHome />
-        </Route>
-        <Route path="/hire">
-          <Hire />
-        </Route>
-        <Route path="/portfolio">
-          <Portfolio />
-        </Route>
-        <Route path="/">
-          <Landing />
-        </Route>
-      </Switch>
+      <main className="main">
+        <Switch>
+          <Route path="/blog/:blogSlug">
+            <Blog />
+          </Route>
+          <Route path="/blog">
+            <BlogHome />
+          </Route>
+          <Route path="/hire">
+            <Hire />
+          </Route>
+          <Route path="/portfolio">
+            <Portfolio />
+          </Route>
+          <Route path="/">
+            <Landing />
+          </Route>
+        </Switch>
+      </main>
     </Router>
   );
 }

@@ -1,4 +1,27 @@
 .blog-page-title {
-  color: var(--third-color);
+  color: var(--main-color);
   font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+/* article */
+
+.article {
+  border-bottom: 2px solid var(--main-color);
+  padding-bottom: 1rem;
+  width: 40%;
+}
+
+.article__title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.author {
+  color: var(--second-color);
+  font-size: 0.9rem;
+}
+
+.article__created {
+  font-size: 0.7rem;
 }
