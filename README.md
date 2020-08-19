@@ -14,16 +14,17 @@
   - [] Need to find out how to send to react client once we get there
 - [x] create admin user
   - [] find out how to seed this to db in a production env
+- [] add ability to create multiple users
 - [x] create association between admin user and blog posts
-- [] figure out a way to maintain one user resource
-  - meaning, hide or block user creation endpoint from end users
 - [x] authenticate all resource endpoints
 - [x] add authorization to post routes
 - [x] proper error handling
-- [] image upload to make posts fancy
+- [x] image upload to make posts fancy
 - [] add pagination and curate home feed
 
 ### client
+
+# bootstrapped reaact app broke, had to restart
 
 - [x] start basic client build
 
@@ -32,9 +33,6 @@
   - [x] work on nested routing for the blogs
 - [] **Finish the pages**
   - [x] Landing
-  - [] Hire
-  - [] Portfolio
-  - [x] Blog home feed
 - [] **Need to find a good react markdown editor**
 
   - https://uiwjs.github.io/react-md-editor/
