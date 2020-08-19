@@ -29,10 +29,10 @@
 - [x] start basic client build
 
 - [] **Routing:**
-  - [x] get routing working
-  - [x] work on nested routing for the blogs
+  - [] get routing working
+  - [] work on nested routing for the blogs
 - [] **Finish the pages**
-  - [x] Landing
+  - [] Landing
 - [] **Need to find a good react markdown editor**
 
   - https://uiwjs.github.io/react-md-editor/
