@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import "./Landing.css";
 import aboutImg from "./about-img.JPG";
+
 const Landing = () => (
   <div className="container hero-container">
     <div className="hero">
