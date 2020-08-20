@@ -1,6 +1,13 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
+/**
+ * name
+ * email
+ * password
+ * posts
+ * avatar url
+ */
 const userSchema = new Schema({
   name: {
     type: String,
@@ -15,7 +22,11 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  blogs: [{ type: Schema.Types.ObjectId, ref: "Blog" }],
+  avatarUrl: {
+    type: String,
+    required: true,
+  },
+  posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
 });
 
 const User = mongoose.model("User", userSchema);

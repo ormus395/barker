@@ -56,6 +56,7 @@ const store = new mongoStore({
   databaseName: "code_blog",
   expires: 1000 * 60 * 60 * 2,
 });
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -71,13 +72,22 @@ app.use(
 // app.use(csrfProtection);
 
 // routes
+// create users, set sessions, destroy sessions
 app.use("/api", routes.auth);
-app.use("/api", routes.blog);
+// curates post feed
+app.use("/api", routes.feed);
+// handles post resources, create update and delete
+app.use("/api", routes.post);
+// will eventually handle admin tasks, like deleting users ect...
 app.use("/admin", routes.admin);
-app.get("/", (req, res, next) => {
-  console.log(req.csrfToken());
-  res.send(req.csrfToken());
-});
+
+// get the csrf token
+// app.get("/", (req, res, next) => {
+//   console.log(req.csrfToken());
+//   res.send(req.csrfToken());
+// });
+
+// when deployed to production, will set the front end to react app
 if (env !== "development") {
   app.use(express.static(path.join(__dirname, "../", "../", "client")));
   app.get("/", (req, res, next) => {
@@ -87,6 +97,7 @@ if (env !== "development") {
   });
 }
 
+// 404
 app.use((req, res) => {
   res.status(404).json({ message: "404 Not found" });
 });

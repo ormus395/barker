@@ -4,6 +4,9 @@ import User from "../models/user";
 
 const salt = 12;
 
+/**
+ * create user resource
+ */
 export const signup = (req, res, next) => {
   // get request body
   let email = req.body.email;
@@ -43,6 +46,7 @@ export const signup = (req, res, next) => {
     });
 };
 
+// log user in, create user session
 export const login = (req, res, next) => {
   console.log(req.body);
   const email = req.body.email;
@@ -81,6 +85,7 @@ export const login = (req, res, next) => {
   });
 };
 
+// logout user, destroy session
 export const logout = (req, res, next) => {
   req.session.destroy((error) => {
     if (error) {

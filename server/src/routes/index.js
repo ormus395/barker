@@ -1,11 +1,12 @@
-import session from "./session";
 import auth from "./auth";
-import blog from "./blog";
+import feed from "./feed";
 import admin from "./admin";
+import post from "./post";
 
+// exports all router apps
 export default {
-  session,
   auth,
-  blog,
+  feed,
   admin,
+  post,
 };
