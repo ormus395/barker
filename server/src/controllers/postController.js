@@ -4,6 +4,7 @@ import Post from "../models/post";
 import User from "../models/user";
 
 const getHomeFeed = (req, res) => {
+  console.log("get home feed");
   Post.find()
     .populate("author", "name")
     .then((posts) => {
@@ -51,6 +52,7 @@ const getHomeFeed = (req, res) => {
  */
 
 const createPost = (req, res) => {
+  console.log("create post");
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -93,6 +95,7 @@ const createPost = (req, res) => {
 };
 
 const updatePost = (req, res, next) => {
+  console.log("update post");
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -129,6 +132,7 @@ const updatePost = (req, res, next) => {
 };
 
 const deletePost = (req, res) => {
+  console.log("delete post");
   res.send("delete the post with id: " + req.params.postId);
 };
 

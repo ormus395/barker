@@ -3,7 +3,7 @@ import React from "react";
 function Form(props) {
   return (
     <div className="form-container">
-      <form action="">{props.children}</form>
+      <form onSubmit={props.handleSubmit}>{props.children}</form>
     </div>
   );
 }

@@ -37,7 +37,8 @@
 - **Data Fetching**
   - [] fetch posts on home feed
 - **Auth**
-  - [] sign up user
+  - [x] sign up user
+    - [] able to signup but need to progromatically reditect to login after successful submit
   - [] login user
   - [] logout user
   - [] control routes ect... based on auth

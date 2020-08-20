@@ -8,6 +8,7 @@ const salt = 12;
  * create user resource
  */
 export const signup = (req, res, next) => {
+  console.log("Sign up controller");
   // get request body
   let email = req.body.email;
   let name = req.body.name;
@@ -48,7 +49,7 @@ export const signup = (req, res, next) => {
 
 // log user in, create user session
 export const login = (req, res, next) => {
-  console.log(req.body);
+  console.log("login controller");
   const email = req.body.email;
   const password = req.body.password;
 
@@ -87,6 +88,7 @@ export const login = (req, res, next) => {
 
 // logout user, destroy session
 export const logout = (req, res, next) => {
+  console.log("logout");
   req.session.destroy((error) => {
     if (error) {
       next(error);

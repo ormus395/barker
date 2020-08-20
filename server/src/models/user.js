@@ -16,7 +16,6 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
   },
   password: {
     type: String,
@@ -24,7 +23,6 @@ const userSchema = new Schema({
   },
   avatarUrl: {
     type: String,
-    required: true,
   },
   posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
 });

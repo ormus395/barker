@@ -1,17 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
+import { Route, Redirect } from "react-router-dom";
 
 import Form from "../../../components/Form";
 import InputWithLabel from "../../../components/InputWLabel";
 import Button from "../../../components/Button";
 
+const LOGIN_ENDPOINT = "/api/auth/signup";
+
 function SignUp() {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (event) => {
+    let data = {
+      email: email,
+      name: name,
+      password: password,
+    };
+
+    fetch(LOGIN_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((response) => {
+      console.log(response);
+      return <Redirect to={{ pathname: "/login" }} />;
+    });
+    event.preventDefault();
+  };
+
   return (
     <>
       <h3>Sign Up</h3>
-      <Form>
-        <InputWithLabel label="Name" />
-        <InputWithLabel label="Email" />
-        <InputWithLabel label="Password" />
+      <Form handleSubmit={handleSubmit}>
+        <InputWithLabel
+          label="Name"
+          htmlFor="name"
+          stateUpdater={setName}
+          value={name}
+          type="text"
+          id="name"
+        />
+        <InputWithLabel
+          label="Email"
+          htmlFor="email"
+          stateUpdater={setEmail}
+          value={email}
+          type="email"
+          id="email"
+        />
+        <InputWithLabel
+          label="Password"
+          htmlFor="password"
+          stateUpdater={setPassword}
+          value={password}
+          type="password"
+          id="password"
+        />
         <Button type="submit">Sign Up</Button>
       </Form>
     </>

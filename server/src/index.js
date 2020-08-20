@@ -9,6 +9,12 @@ import csurf from "csurf";
 import express from "express";
 import mongoose from "mongoose";
 
+import User from "./models/user";
+import Post from "./models/post";
+
+// seed method
+import createUserWithPost from "../seed/index";
+
 import routes from "./routes";
 
 const app = express();
@@ -53,7 +59,7 @@ app.use("/images", express.static(imagePath));
 const store = new mongoStore({
   uri: process.env.DATABASE,
   collection: "sessions",
-  databaseName: "code_blog",
+  databaseName: "barker",
   expires: 1000 * 60 * 60 * 2,
 });
 
@@ -120,8 +126,14 @@ app.use((error, req, res, next) => {
 mongoose
   .connect(process.env.DATABASE, { useNewUrlParser: true })
   .then((result) => {
-    app.listen(port, () => {
-      console.log("server started on port: " + port);
+    Promise.all([User.deleteMany({}), Post.deleteMany({})]).then((result) => {
+      createUserWithPost()
+        .then((reponse) => {
+          app.listen(port, () => {
+            console.log("server started on port: " + port);
+          });
+        })
+        .catch((err) => console.log(err));
     });
   })
   .catch((err) => console.log(err));
