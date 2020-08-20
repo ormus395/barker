@@ -1,12 +1,36 @@
 import React from "react";
-import logo from "./logo.svg";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+
+// pages
+import { Landing, HomeFeed, SignUp, Login } from "./pages";
+
+// components
+import Nav from "./components/Nav";
 
 function App() {
   return (
-    <div className="App">
-      <h3>Welcome to Barker</h3>
-    </div>
+    <Router>
+      <header>
+        <Nav />
+      </header>
+      <main className="App">
+        <Switch>
+          <Route path="/feed">
+            <HomeFeed />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+          <Route path="/">
+            <Landing />
+          </Route>
+        </Switch>
+      </main>
+    </Router>
   );
 }
 

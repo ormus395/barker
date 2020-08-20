@@ -28,10 +28,19 @@
 - [x] start basic client build
 
 - [] **Routing:**
-  - [] get routing working
+  - [x] get routing working
   - [] work on nested routing for the blogs
 - [] **Finish the pages**
   - [] Landing
+  - [] Sign Up
+  - [] Login
+- **Data Fetching**
+  - [] fetch posts on home feed
+- **Auth**
+  - [] sign up user
+  - [] login user
+  - [] logout user
+  - [] control routes ect... based on auth
 
 possible color palette
 
@@ -40,3 +49,5 @@ possible color palette
 - #3aafa9
 - #def2f1
 - #feffff
+
+layout similar to this: https://www.frontendmentor.io/challenges/huddle-landing-page-with-alternating-feature-blocks-5ca5f5981e82137ec91a5100
