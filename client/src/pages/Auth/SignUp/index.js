@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, useHistory } from "react-router-dom";
 
 import Form from "../../../components/Form";
 import InputWithLabel from "../../../components/InputWLabel";
@@ -8,6 +8,7 @@ import Button from "../../../components/Button";
 const LOGIN_ENDPOINT = "/api/auth/signup";
 
 function SignUp() {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +28,7 @@ function SignUp() {
       body: JSON.stringify(data),
     }).then((response) => {
       console.log(response);
-      return <Redirect to={{ pathname: "/login" }} />;
+      return history.push("/login");
     });
     event.preventDefault();
   };

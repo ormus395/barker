@@ -2,6 +2,13 @@
 
 ## Todos:
 
+### Need to learn useContext
+
+this will probably be easier than useState or her alternatives to
+create application wide authentication logic and variables
+because my current knowledge is useState and props like a strippers dollar
+bill
+
 ### api
 
 - [x] wired up post schema
@@ -38,10 +45,11 @@
   - [] fetch posts on home feed
 - **Auth**
   - [x] sign up user
-    - [] able to signup but need to progromatically reditect to login after successful submit
+    - [x] able to signup but need to progromatically reditect to login after successful submit
   - [] login user
   - [] logout user
   - [] control routes ect... based on auth
+- [] **User experience**
 
 possible color palette
 
