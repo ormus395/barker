@@ -2,19 +2,6 @@
 
 ## Todos:
 
-### Need to learn useContext
-
-this will probably be easier than useState or her alternatives to
-create application wide authentication logic and variables
-because my current knowledge is useState and props like a strippers dollar
-bill
-
-learned useContext and the context api.
-Going to wrap the whole app in an authprovider and userprovider
-_really_ like [Kent C. Dodds way of doing auth](https://kentcdodds.com/blog/authentication-in-react-applications)
-
-will ceate essentially two apps, one with and without auth
-
 ### api
 
 - [x] wired up post schema
@@ -35,8 +22,6 @@ will ceate essentially two apps, one with and without auth
 - [] add pagination and curate home feed
 
 ### client
-
-# bootstrapped reaact app broke, had to restart
 
 - [x] start basic client build
 
@@ -88,3 +73,16 @@ possible color palette
 - #feffff
 
 layout similar to this: https://www.frontendmentor.io/challenges/huddle-landing-page-with-alternating-feature-blocks-5ca5f5981e82137ec91a5100
+
+## What I learned
+
+### useContext
+
+this will probably be easier than useState or her alternatives to
+create application wide authentication logic and variables
+because my current knowledge is useState and prop drilling
+
+learned useContext and the context api.
+_really_ like [Kent C. Dodds way of doing auth](https://kentcdodds.com/blog/authentication-in-react-applications)
+
+will ceate essentially two apps, one with and without auth
