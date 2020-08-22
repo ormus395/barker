@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * accepts handleSubmit through props to allow abstracted logic
+ */
+
 function Form(props) {
   return (
     <div className="form-container">

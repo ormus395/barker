@@ -9,16 +9,26 @@ const createUserWithPost = () => {
     avatarUrl: `/images/2020-08-18T04-34-39.263Z-arthur.jpg`,
   });
 
-  const post1 = new Post({
-    body: "YAY im a post from Frank",
-    author: user1._id,
-  });
+  let tempUser;
 
-  return post1.save().then((post) => {
-    user1.posts.push(post);
+  return user1
+    .save()
+    .then((user) => {
+      tempUser = user;
+      const post1 = new Post({
+        body: "YAY im a post from Frank",
+        author: user1._id,
+      });
 
-    return user1.save();
-  });
+      return post1.save();
+    })
+    .then((post) => {
+      return post.save().then((post) => {
+        tempUser.posts.push(post);
+
+        return tempUser.save();
+      });
+    });
 };
 
 export default createUserWithPost;

@@ -90,7 +90,7 @@ const createPost = (req, res) => {
       });
     })
     .catch((err) => {
-      throw new Error(err);
+      next(err);
     });
 };
 

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 const Schema = mongoose.Schema;
 
 /**
@@ -25,6 +26,21 @@ const userSchema = new Schema({
     type: String,
   },
   posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+});
+
+userSchema.pre("save", function (next) {
+  if (this.password) {
+    bcrypt
+      .hash(this.password, 12)
+      .then((hash) => {
+        this.password = hash;
+
+        return next();
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
 });
 
 const User = mongoose.model("User", userSchema);

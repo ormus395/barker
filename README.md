@@ -9,6 +9,12 @@ create application wide authentication logic and variables
 because my current knowledge is useState and props like a strippers dollar
 bill
 
+learned useContext and the context api.
+Going to wrap the whole app in an authprovider and userprovider
+_really_ like [Kent C. Dodds way of doing auth](https://kentcdodds.com/blog/authentication-in-react-applications)
+
+will ceate essentially two apps, one with and without auth
+
 ### api
 
 - [x] wired up post schema
@@ -36,20 +42,42 @@ bill
 
 - [] **Routing:**
   - [x] get routing working
-  - [] work on nested routing for the blogs
 - [] **Finish the pages**
   - [] Landing
   - [] Sign Up
   - [] Login
 - **Data Fetching**
-  - [] fetch posts on home feed
+  - [x] fetch posts on home feed
 - **Auth**
   - [x] sign up user
     - [x] able to signup but need to progromatically reditect to login after successful submit
-  - [] login user
-  - [] logout user
-  - [] control routes ect... based on auth
+  - [x] login user
+    - [] now need to determine how sessions will work with react
+  - [x] logout user
+    - [] probably not goint about it the best way, but using AuthProvider to and useContext. Set isLoggedIn after successful response from logout resource
+  - [x] control routes ect... based on auth
 - [] **User experience**
+  - Loaders
+  - messages based on actions
+  - ect...
+
+**Major App user stories**
+
+- [x] User can login and logout
+- [x] User can see posts on home feed after login
+  - [] User should see a curated list of posts from users followers
+- [] User can create a post
+  - [] front end
+  - [x] backend
+- [] user can delete a post
+  - [] front end
+  - [x] backend
+- [] user can edit a post
+  - [] front end
+  - [x] backend
+- [] user can follow or add a friend
+
+### more to come probably
 
 possible color palette
 

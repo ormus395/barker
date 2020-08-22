@@ -23,15 +23,20 @@ export const signup = (req, res, next) => {
         throw error;
       }
 
-      bcrypt.hash(password, salt).then((hash) => {
-        let newUser = new User({
-          email: email,
-          name: name,
-          password: hash,
-        });
+      // bcrypt.hash(password, salt).then((hash) => {
+      //   let newUser = new User({
+      //     email: email,
+      //     name: name,
+      //     password: hash,
+      //   });
 
-        return newUser.save();
+      let newUser = new User({
+        email: email,
+        name: name,
+        password: password,
       });
+
+      return newUser.save();
     })
     .then((user) => {
       res.status(201).json({
@@ -53,37 +58,41 @@ export const login = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  User.findOne({ email: email }).then((user) => {
-    // if no user, 401, user wasnt found with that email
-    if (!user) {
-      let error = new Error("Unable to login. Incorrect login credentials.");
-      error.statusCode = 401;
-      throw error;
-    }
-
-    // user was found, check password
-    bcrypt
-      .compare(password, user.password)
-      .then((isMatch) => {
-        if (!isMatch) {
-          let error = new Error(
-            "Unable to login. Incorrect login credentials."
-          );
-          error.statusCode = 401;
-          throw error;
-        }
-
-        req.session.isLoggedIn = true;
-        req.session.user = {
-          _id: user._id,
-        };
-
-        res.status(200).json({ message: "Logged in successfully" });
-      })
-      .catch((error) => {
+  User.findOne({ email: email })
+    .then((user) => {
+      // if no user, 401, user wasnt found with that email
+      if (!user) {
+        let error = new Error("Unable to login. Incorrect login credentials.");
+        error.statusCode = 401;
         throw error;
-      });
-  });
+      }
+
+      // user was found, check password
+      bcrypt
+        .compare(password, user.password)
+        .then((isMatch) => {
+          if (!isMatch) {
+            let error = new Error(
+              "Unable to login. Incorrect login credentials."
+            );
+            error.statusCode = 401;
+            throw error;
+          }
+
+          req.session.isLoggedIn = true;
+          req.session.user = {
+            _id: user._id,
+          };
+
+          res.status(200).json({ message: "Logged in successfully" });
+        })
+        .catch((error) => {
+          next(error);
+        });
+    })
+    .catch((error) => {
+      next(error);
+    });
 };
 
 // logout user, destroy session

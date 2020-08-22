@@ -5,7 +5,7 @@ import Form from "../../../components/Form";
 import InputWithLabel from "../../../components/InputWLabel";
 import Button from "../../../components/Button";
 
-const LOGIN_ENDPOINT = "/api/auth/signup";
+const SIGNUP_ENDPOINT = "/api/auth/signup";
 
 function SignUp() {
   const history = useHistory();
@@ -14,23 +14,28 @@ function SignUp() {
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     let data = {
       email: email,
       name: name,
       password: password,
     };
 
-    fetch(LOGIN_ENDPOINT, {
+    fetch(SIGNUP_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }).then((response) => {
-      console.log(response);
-      return history.push("/login");
-    });
-    event.preventDefault();
+    })
+      .then((response) => {
+        console.log(response);
+        return history.push("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Unable to create user account");
+      });
   };
 
   return (

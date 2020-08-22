@@ -80,6 +80,8 @@ app.use(
 // routes
 // create users, set sessions, destroy sessions
 app.use("/api", routes.auth);
+// session based stuff
+app.use("/api", routes.session);
 // curates post feed
 app.use("/api", routes.feed);
 // handles post resources, create update and delete
@@ -110,14 +112,14 @@ app.use((req, res) => {
 
 // error handling
 app.use((error, req, res, next) => {
-  console.log(error);
+  console.log("error controller called", error);
   if (!error.statusCode) {
     error.statusCode = 500;
     error.message =
       "Server error. Our team has been notified and will be working to fix the situation.";
   }
 
-  return res.status(error.statusCode).json({
+  res.status(error.statusCode).json({
     errors: [error],
   });
 });
