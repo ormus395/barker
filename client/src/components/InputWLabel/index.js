@@ -9,7 +9,7 @@ import React from "react";
  */
 function InputWithLabel(props) {
   const handleChange = (event) => {
-    return props.stateUpdater(event.target.value);
+    return props.stateUpdater(event.target.value, props.id);
   };
 
   return (

@@ -55,6 +55,7 @@ export const signup = (req, res, next) => {
 // log user in, create user session
 export const login = (req, res, next) => {
   console.log("login controller");
+  console.log(req.body);
   const email = req.body.email;
   const password = req.body.password;
 

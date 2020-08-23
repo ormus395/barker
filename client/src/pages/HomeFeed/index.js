@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from "react";
 import Loader from "../../components/Loader";
 
+import Modal from "../../components/Modal";
+import Button from "../../components/Button";
+
 const FEED_ENDPOINT = "/api/feed";
+const POST_ENDPOINT = "/api/post";
 
 // load posts from backend, and display them
 function HomeFeed() {
   const [posts, setPosts] = useState(null);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  // use object prop to update specific value for this state
+  const [postModalState, setPostModalState] = React.useState({
+    body: "",
+  });
 
   useEffect(() => {
     setIsLoading(true);
@@ -19,6 +28,36 @@ function HomeFeed() {
       })
       .catch((err) => setIsError(true));
   }, []);
+
+  const handleSubmitPost = (event) => {
+    event.preventDefault();
+    let data = postModalState;
+
+    fetch(POST_ENDPOINT + "/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.status !== 200 && response.status !== 201) {
+          return alert("Problem creating post");
+        }
+
+        return response.json();
+      })
+      .then((jsonResponse) => {
+        console.log(jsonResponse);
+      });
+  };
+
+  const handleInputChange = (value, key) => {
+    console.log(value, key);
+    let newModalState = { [key]: value };
+
+    setPostModalState(newModalState);
+  };
 
   let articles;
 
@@ -41,6 +80,23 @@ function HomeFeed() {
 
   return (
     <div>
+      <section>
+        <Button>Add a post</Button>
+      </section>
+      <section>
+        <Modal
+          handleSubmit={handleSubmitPost}
+          input={{
+            label: "Post",
+            htmlFor: "body",
+            id: "body",
+            name: "body",
+            type: "text",
+            value: postModalState.body,
+            stateUpdater: handleInputChange,
+          }}
+        />
+      </section>
       <section className="feed">{isLoading ? <Loader /> : articles}</section>
     </div>
   );

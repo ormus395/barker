@@ -9,6 +9,7 @@ import { Landing, HomeFeed, SignUp, Login } from "../pages";
 
 // components
 import { AuthenticatedNav, UnAuthenticatedNav } from "../components/Nav";
+import UserProfile from "../pages/UserProfile";
 
 function App() {
   const handleLogin = () => {
@@ -25,6 +26,9 @@ function App() {
           </header>
           <main className="App">
             <Switch>
+              <Route path="/user-profile">
+                <UserProfile />
+              </Route>
               <Route path="/feed">
                 <HomeFeed />
               </Route>
@@ -46,6 +50,9 @@ function App() {
               </Route>
               <Route path="/signup">
                 <SignUp />
+              </Route>
+              <Route path="/">
+                <Landing />
               </Route>
             </Switch>
           </main>

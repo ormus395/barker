@@ -29,7 +29,9 @@ function SignUp() {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        console.log(response);
+        if (response.status !== 200 && response.status !== 201) {
+          return alert("Unable to signup, check your values.");
+        }
         return history.push("/login");
       })
       .catch((err) => {

@@ -26,6 +26,7 @@ const userSchema = new Schema({
     type: String,
   },
   posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+  friends: [{ type: Schema.Types.ObjectId, ref: "User" }],
 });
 
 userSchema.pre("save", function (next) {

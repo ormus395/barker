@@ -33,6 +33,9 @@ export function AuthenticatedNav() {
           <Link to="/feed">Feed</Link>
         </li>
         <li>
+          <Link to="/user-profile">User Profile</Link>
+        </li>
+        <li>
           <Form handleSubmit={handleSubmit}>
             <Button type="submit">Logout</Button>
           </Form>

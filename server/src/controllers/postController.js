@@ -1,8 +1,16 @@
-import marked from "marked";
+import { validationResult } from "express-validator";
 
 import Post from "../models/post";
 import User from "../models/user";
 
+/*
+  Will accept query parameters
+  default: will fetch feed based on users friend list.
+  if no friends, the front end will inquire about adding friends
+  public: fetch all posts tagged public
+  
+  will probably add more options later
+*/
 const getHomeFeed = (req, res) => {
   console.log("get home feed");
   Post.find()
@@ -66,13 +74,18 @@ const createPost = (req, res) => {
 
   const { body } = req.body;
   const image = req.file;
-  const imageUrl = "/" + image.path;
+  let imageUrl;
+
+  if (image) {
+    imageUrl = "/" + image.path;
+  }
 
   const newPost = new Post({
     body,
     author: userId,
-    imageUrl: imageUrl,
+    imageUrl: imageUrl || null,
   });
+
   newPost
     .save()
     .then((createdPost) => {
