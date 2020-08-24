@@ -12,7 +12,18 @@ import User from "../models/user";
   will probably add more options later
 */
 const getHomeFeed = (req, res) => {
-  console.log("get home feed");
+  // if no params, assume default, and fetch logged in users
+  // if no users and no posts, send 404, client will advise to
+  // follow friends
+
+  //
+
+  if (Object.keys(req.params).length < 1) {
+    // no params, its default, so posts from users friends
+    // need to be able to join documents. search for most
+    // recent posts made by users friends
+  }
+
   Post.find()
     .populate("author", "name")
     .then((posts) => {

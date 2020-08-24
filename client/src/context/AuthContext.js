@@ -32,7 +32,10 @@ function AuthProvider(props) {
         }
         setIsLoading(false);
       })
-      .catch((err) => setIsError(true));
+      .catch((err) => {
+        setIsError(true);
+        setIsLoading(false);
+      });
   }, []);
 
   if (isLoading) {

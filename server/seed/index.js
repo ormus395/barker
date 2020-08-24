@@ -4,8 +4,8 @@ import Post from "../src/models/post";
 const createUserWithPost = () => {
   const user1 = new User({
     name: "Frank Frankerson",
-    email: "frank@mail.com",
-    password: "12345",
+    email: "test@mail.com",
+    password: "1",
     avatarUrl: `/images/2020-08-18T04-34-39.263Z-arthur.jpg`,
   });
 

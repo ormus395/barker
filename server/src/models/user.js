@@ -30,18 +30,20 @@ const userSchema = new Schema({
 });
 
 userSchema.pre("save", function (next) {
-  if (this.password) {
-    bcrypt
-      .hash(this.password, 12)
-      .then((hash) => {
-        this.password = hash;
+  let user = this;
 
-        return next();
-      })
-      .catch((err) => {
-        next(err);
-      });
-  }
+  if (!user.isModified("password")) return next();
+
+  bcrypt
+    .hash(this.password, 12)
+    .then((hash) => {
+      this.password = hash;
+
+      return next();
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 const User = mongoose.model("User", userSchema);

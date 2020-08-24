@@ -50,7 +50,7 @@
 
 - [x] User can login and logout
 - [x] User can see posts on home feed after login
-  - [] User should see a curated list of posts from users followers
+  - [] User should see a curated list of posts from users friends
 - [] User can create a post
   - [] front end
   - [x] backend
